@@ -5,6 +5,9 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
+
+RUN ls -al
+
 COPY ["WebSave/WebSave.csproj", "WebSave/"]
 RUN dotnet restore "WebSave/WebSave.csproj"
 COPY . .
