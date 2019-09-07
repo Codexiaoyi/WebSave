@@ -1,8 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+
+<!DOCTYPE html>
+@inject SignInManager<IdentityUser> SignInManager
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>存储你的HTML</title>
 
     <environment include="Development">
@@ -13,7 +16,7 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"/>
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -32,18 +35,33 @@
                     </ul>
                 </div>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <form asp-action="Logout" asp-controller="Account" method="post" id="logout">
+                            <ul class="navbar-nav float-right">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="javascript:document.getElementById('logout').submit()">登出</a>
+                                </li>
+                            </ul>
+                        </form>
+                    }
+                    else
+                    {
+                        <ul class="navbar-nav float-right">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">登录</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">注册</a>
+                            </li>
+                        </ul>
+                    }
                     <ul class="navbar-nav float-right">
                         <li>
                             <form class="form-inline float-right">
                                 <input class="form-control mr-sm-2" type="search" placeholder="搜索内容" aria-label="Search">
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
                             </form>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">登录</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">注册</a>
                         </li>
                     </ul>
                 </div>
