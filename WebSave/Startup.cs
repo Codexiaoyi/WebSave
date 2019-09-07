@@ -37,7 +37,10 @@ namespace WebSave
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<IdentityDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("WebSave.Data")));
+                {
+                    options.UseMySql(Configuration.GetConnectionString("MySqlConnection"),
+                        b => b.MigrationsAssembly("WebSave.Data"));
+                });
 
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<IdentityDbContext>();
@@ -72,12 +75,12 @@ namespace WebSave
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+            //else
+            //{
+            //    app.UseExceptionHandler("/Home/Error");
+            //    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            //    app.UseHsts();
+            //}
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
