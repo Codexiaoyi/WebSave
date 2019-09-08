@@ -1,0 +1,17 @@
+﻿@model List<WebSave.Model.FileType>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">文件类型</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        @foreach (var item in Model)
+        {
+            <td>@item.TypeName</td>
+        }
+    </tr>
+    </tbody>
+</table>

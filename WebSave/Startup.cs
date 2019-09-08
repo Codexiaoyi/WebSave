@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebSave.Data;
+using WebSave.Model;
+using WebSave.Services;
 
 namespace WebSave
 {
@@ -36,14 +35,20 @@ namespace WebSave
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<IdentityDbContext>(options =>
+            services.AddDbContext<MyContext>(options =>
                 {
                     options.UseMySql(Configuration.GetConnectionString("MySqlConnection"),
                         b => b.MigrationsAssembly("WebSave.Data"));
                 });
 
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<IdentityDbContext>();
+            //services.AddDbContext<IdentityDbContext>(options =>
+            //{
+            //    options.UseMySql(Configuration.GetConnectionString("MySqlConnection"),
+            //        b => b.MigrationsAssembly("WebSave.Data"));
+            //});
+
+            services.AddDefaultIdentity<User>()
+                .AddEntityFrameworkStores<MyContext>();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -58,13 +63,21 @@ namespace WebSave
                 // Lockout settings.
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                 options.Lockout.MaxFailedAccessAttempts = 5;
-                options.Lockout.AllowedForNewUsers = true;
+                options.Lockout.AllowedForNewUsers = false;
 
                 // User settings.
                 options.User.AllowedUserNameCharacters =
                     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = false;
             });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromSeconds(10);
+            });
+
+            services.AddScoped<IFileTypeService, FileTypeService>();
+            services.AddScoped<IFileService, FileService>();
 
         }
 

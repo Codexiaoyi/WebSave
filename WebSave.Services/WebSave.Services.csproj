@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebSave.Data\WebSave.Data.csproj" />
+    <ProjectReference Include="..\WebSave.Model\WebSave.Model.csproj" />
+  </ItemGroup>
+
 </Project>
