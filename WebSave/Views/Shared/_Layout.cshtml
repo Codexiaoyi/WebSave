@@ -28,22 +28,20 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <form asp-action="Index" asp-controller="FileType" method="post" id="ManageFile">
-                        <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">首页</a>
+                        </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">首页</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MyInformation">个人信息</a>
                             </li>
-                            @if (SignInManager.IsSignedIn(User))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MyInformation">个人信息</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" href="javascript:document.getElementById('ManageFile').submit()">管理文件</a>
-                                </li>
-                            }
-                        </ul>
-                    </form>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="FileType" asp-action="Index">管理文件</a>
+                            </li>
+                        }
+                    </ul>
                 </div>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     @if (SignInManager.IsSignedIn(User))

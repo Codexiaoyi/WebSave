@@ -1,0 +1,11 @@
+﻿@model AddViewModel
+
+<form asp-action="Add" asp-controller="FileType" method="post">
+    <div>
+        <label asp-for="TypeName"></label>
+        <input autocomplete="off" asp-for="TypeName" />
+    </div>
+    <div>
+        <input class="btn btn-danger" type="submit" value="添加" />
+    </div>
+</form>

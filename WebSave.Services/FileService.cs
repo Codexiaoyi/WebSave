@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -44,9 +45,9 @@ namespace WebSave.Services
         /// 获取所有文件
         /// </summary>
         /// <returns></returns>
-        public async Task<List<File>> GetAllAsync()
+        public async Task<List<File>> GetAllByFileTypeIdAsync(int id)
         {
-            return await _context.Files.ToListAsync();
+            return await _context.Files.Where(x => x.FileTypeId == id).ToListAsync();
         }
 
         /// <summary>

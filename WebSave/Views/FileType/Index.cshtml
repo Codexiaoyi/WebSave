@@ -1,17 +1,26 @@
 ﻿@model List<WebSave.Model.FileType>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">文件类型</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        @foreach (var item in Model)
-        {
-            <td>@item.TypeName</td>
-        }
-    </tr>
-    </tbody>
-</table>
+<form method="post">
+    <table class="table table-active">
+        <thead>
+            <tr>
+                <th scope="col">文件类型</th>
+                <th scope="col">操作</th>
+                <th scope="col"><a asp-action="Add" asp-controller="FileType" class="btn btn-success">添加</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TypeName</td>
+                    <td>
+                        <button type="submit" asp-action="Index" asp-controller="File" asp-route-id="@item.Id" class="btn btn-light">查看</button>
+                        <button type="submit" asp-action="Edit" asp-controller="FileType" class="btn btn-success">编辑</button>
+                        <button type="submit" asp-action="Delete" asp-controller="FileType" asp-route-id="@item.Id" class="btn btn-danger">删除</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

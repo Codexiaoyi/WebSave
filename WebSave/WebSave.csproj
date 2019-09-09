@@ -21,9 +21,4 @@
     <ProjectReference Include="..\WebSave.Services\WebSave.Services.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Views\File\" />
-  </ItemGroup>
-
 </Project>

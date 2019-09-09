@@ -8,7 +8,7 @@ namespace WebSave.Services
 {
     public interface IFileService
     {
-        Task<List<File>> GetAllAsync();
+        Task<List<File>> GetAllByFileTypeIdAsync(int id);
 
         Task<File> GetByIdAsync(int id);
 
