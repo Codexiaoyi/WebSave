@@ -27,6 +27,10 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
@@ -47,7 +51,7 @@
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <form asp-action="Logout" asp-controller="Account" method="post" id="Logout">
-                            <ul class="navbar-nav float-right">
+                            <ul class="navbar-nav flex-grow-0">
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" href="javascript:document.getElementById('Logout').submit()">注销</a>
                                 </li>
@@ -56,7 +60,7 @@
                     }
                     else
                     {
-                        <ul class="navbar-nav float-right">
+                        <ul class="navbar-nav flex-grow-0">
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">登录</a>
                             </li>
@@ -65,14 +69,14 @@
                             </li>
                         </ul>
                     }
-                    <ul class="navbar-nav float-right">
+                    @*<ul class="navbar-nav float-right">
                         <li>
                             <form class="form-inline float-right">
                                 <input class="form-control mr-sm-2" type="search" placeholder="搜索内容" aria-label="Search">
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
                             </form>
                         </li>
-                    </ul>
+                    </ul>*@
                 </div>
             </div>
         </nav>

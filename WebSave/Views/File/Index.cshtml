@@ -6,7 +6,7 @@
             <tr>
                 <th scope="col">文件名称</th>
                 <th scope="col">操作</th>
-                <th scope="col"><a class="btn btn-success">添加</a></th>
+                <th scope="col"><a class="btn btn-success" asp-action="Add" asp-route-id="@ViewData["FileTypeId"]">添加</a></th>
             </tr>
         </thead>
         <tbody>
@@ -15,8 +15,7 @@
                 <tr>
                     <td>@item.FileName</td>
                     <td>
-                        <button class="btn btn-light">查看</button>
-                        <button class="btn btn-success">编辑</button>
+                        <button class="btn btn-light" asp-action="Detail" type="submit" asp-route-fileId="@item.Id">查看</button>
                         <button class="btn btn-danger">删除</button>
                     </td>
                 </tr>

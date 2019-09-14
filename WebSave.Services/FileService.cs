@@ -23,11 +23,11 @@ namespace WebSave.Services
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<File> AddAsync(File model)
+        public async Task<int> AddAsync(File model)
         {
             _context.Files.Add(model);
-            await _context.SaveChangesAsync();
-            return model;
+            var result = await _context.SaveChangesAsync();
+            return result;
         }
 
         /// <summary>

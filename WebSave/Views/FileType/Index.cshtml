@@ -16,7 +16,6 @@
                     <td>@item.TypeName</td>
                     <td>
                         <button type="submit" asp-action="Index" asp-controller="File" asp-route-id="@item.Id" class="btn btn-light">查看</button>
-                        <button type="submit" asp-action="Edit" asp-controller="FileType" class="btn btn-success">编辑</button>
                         <button type="submit" asp-action="Delete" asp-controller="FileType" asp-route-id="@item.Id" class="btn btn-danger">删除</button>
                     </td>
                 </tr>

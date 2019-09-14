@@ -71,10 +71,10 @@ namespace WebSave
                 options.User.RequireUniqueEmail = false;
             });
 
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.ExpireTimeSpan = TimeSpan.FromSeconds(10);
-            });
+            //services.ConfigureApplicationCookie(options =>
+            //{
+            //    options.ExpireTimeSpan = TimeSpan.FromSeconds(10);
+            //});
 
             services.AddScoped<IFileTypeService, FileTypeService>();
             services.AddScoped<IFileService, FileService>();

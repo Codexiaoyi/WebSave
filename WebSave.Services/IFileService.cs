@@ -12,7 +12,7 @@ namespace WebSave.Services
 
         Task<File> GetByIdAsync(int id);
 
-        Task<File> AddAsync(File model);
+        Task<int> AddAsync(File model);
 
         Task UpdateAsync(File model);
 
